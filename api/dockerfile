@@ -1,0 +1,14 @@
+FROM python:latest
+
+# set the working directory in the container
+WORKDIR /app
+
+# copy the dependencies file to the working directory
+ADD . /app
+
+# install dependencies
+RUN pip3 install -r requirements.txt
+
+# copy the content of the local directory to the working directory
+# command to run on container start
+CMD [ "python3", "./app.py" ]
