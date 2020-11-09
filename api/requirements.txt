@@ -2,3 +2,4 @@ psutil
 Flask
 Flask_cors
 jsonify
+gunicorn

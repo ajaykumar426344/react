@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+################################
+#   Setup react js container
+################################
+  web:
+    build: ./sys-stats
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+################################
+#   Setup nginx load balancer
+################################
+  nginx:
+    image: nginx:alpine
+    ports:
+      - '80:80' # expose 80 on host and sent to 80 in container
+    depends_on: 
+      - web
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  backend:
+    build: ./api
+    container_name: backend
+    expose:
+      - '5000'
+    ports:
+      - 5000:5000
+
+
+
+
