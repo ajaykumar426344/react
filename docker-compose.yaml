@@ -1,18 +1,18 @@
 version: '3'
 
 services:
-################################
-#   Setup react js container
-################################
+#####################################
+#   Setup react js container        #
+#####################################
   web:
     build: ./sys-stats
     expose:
       - 3000
-    ports:
+    ports:  # expose 3000 on host and sent to 3000 in container
       - 3000:3000
-################################
-#   Setup nginx load balancer
-################################
+######################################
+#   Setup nginx                      #
+######################################
   nginx:
     image: nginx:alpine
     ports:
@@ -22,12 +22,17 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
+
+#######################################
+#   Setup Python Backend Application  #
+#######################################
+
   backend:
     build: ./api
     container_name: backend
     expose:
       - '5000'
-    ports:
+    ports:   # expose 5000 on host and sent to 5000 in container
       - 5000:5000
 
 
