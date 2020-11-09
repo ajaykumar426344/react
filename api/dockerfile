@@ -9,5 +9,5 @@ ADD . /app
 # install dependencies
 RUN pip3 install -r requirements.txt
 
-# command to run on container start
+# command to run Gunicorn  and bind to port 5000 on container start
 CMD ["gunicorn", "-b", "0.0.0.0:5000","wsgi:app" ]
