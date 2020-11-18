@@ -4,7 +4,4 @@ ENV PATH /app/node_modules/.bin:$PATH        #Setting up ENV path for easier acc
 COPY . /app                                  #Copying all the files to the App dir
 RUN npm install                              #Building all the dependencies for the React app
 CMD ["npm","run","build"]                    #Creating the build for production env
-CMD ["npm","start"]                          #Starting the application
-
-
 
