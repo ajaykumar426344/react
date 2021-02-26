@@ -1,7 +1,4 @@
-FROM node:alpine as web-build
-WORKDIR /app                                 #Setting up working dir as /app
-ENV PATH /app/node_modules/.bin:$PATH        #Setting up ENV path for easier access
-COPY . /app                                  #Copying all the files to the App dir
-RUN npm install                              #Building all the dependencies for the React app
-CMD ["npm","run","build"]                    #Creating the build for production env
-
+FROM node:alpine as build
+COPY . ./
+RUN npm install
+CMD ["npm", "start"]
